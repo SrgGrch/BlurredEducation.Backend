@@ -7,11 +7,9 @@ import javax.persistence.Table
 
 @Entity
 @Table
-data class User(
+data class CompanyEntity(
         @Id
-        val id: Int,
+        val id: String,
         val name: String,
-        val nickName: String,
-        val email: String,
-        val company: Company?
+        val description: String
 ) : Serializable
