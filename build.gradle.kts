@@ -24,6 +24,9 @@ dependencies {
 	implementation("io.springfox:springfox-swagger-ui:2.9.2")
 	implementation("org.postgresql:postgresql:42.2.8")
 	implementation("org.springframework.boot:spring-boot-starter-web")
+	implementation("io.jsonwebtoken:jjwt-api:0.10.7")
+	runtime("io.jsonwebtoken:jjwt-impl:0.10.7")
+	runtime("io.jsonwebtoken:jjwt-jackson:0.10.7")
 
 	testImplementation("org.springframework.boot:spring-boot-starter-test") {
 		exclude(group = "org.junit.vintage", module = "junit-vintage-engine")
