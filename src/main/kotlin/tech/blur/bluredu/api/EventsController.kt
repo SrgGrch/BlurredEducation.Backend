@@ -1,5 +1,6 @@
 package tech.blur.bluredu.api
 
+import io.swagger.annotations.Api
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.http.ResponseEntity
 import org.springframework.stereotype.Controller
@@ -8,8 +9,9 @@ import tech.blur.bluredu.core.BaseResponseEntity
 import tech.blur.bluredu.domain.Event
 import tech.blur.bluredu.service.EventService
 
+@Api(tags = ["Events"])
 @Controller("EventController")
-class EventController @Autowired constructor(
+class EventsController @Autowired constructor(
         val eventService: EventService
 ) {
 

@@ -1,5 +1,6 @@
 package tech.blur.bluredu.api
 
+import io.swagger.annotations.Api
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.http.HttpStatus
 import org.springframework.stereotype.Controller
@@ -10,6 +11,7 @@ import tech.blur.bluredu.api.models.AuthResponse
 import tech.blur.bluredu.core.BaseResponseEntity
 import tech.blur.bluredu.service.AccountService
 
+@Api(tags = ["Account"])
 @Controller("AccountController")
 class AccountController @Autowired constructor(
         private val accountService: AccountService
