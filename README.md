@@ -6,7 +6,7 @@
  3. [Authors](#authors)
  
 ## Links:
-- [~~API~~](https://bluredu-backend.herokuapp.com/)
+- [API](https://bluredu-backend.herokuapp.com/)
 - [~~Documentation~~](https://bluredu-backend.herokuapp.com/swagger-ui.html#/)
 
 ## How to run?
