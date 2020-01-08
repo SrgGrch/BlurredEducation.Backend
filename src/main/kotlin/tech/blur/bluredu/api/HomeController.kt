@@ -9,7 +9,7 @@ import javax.servlet.http.HttpServletRequest
 @Controller("HomeController")
 class HomeController {
 
-    @RequestMapping("*")
+    @RequestMapping("/index")
     fun hello(request: HttpServletRequest): BaseResponseEntity<String> {
         println(request.servletPath)
         return when ((1..100).random()) {
