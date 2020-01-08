@@ -7,7 +7,7 @@ import tech.blur.bluredu.repository.EventRepository
 
 @Service("EventService")
 class EventService @Autowired constructor(
-        val eventRepository: EventRepository
+        private val eventRepository: EventRepository
 ) {
     val getAllEvents: (() -> List<Event>) =
             {

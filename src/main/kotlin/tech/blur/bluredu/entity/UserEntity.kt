@@ -16,7 +16,7 @@ data class UserEntity(
         val passwordHash: String,
 
         @Column(name = "notification_token")
-        val notificationToken: String,
+        val notificationToken: String?,
 
         @ManyToOne
         @JoinColumn(name = "company", referencedColumnName = "id")

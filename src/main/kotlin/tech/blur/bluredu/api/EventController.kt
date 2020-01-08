@@ -18,6 +18,6 @@ class EventController @Autowired constructor(
 
 
     companion object {
-        const val EVENTS_ROOT = "Events"
+        private const val EVENTS_ROOT = "Events"
     }
 }

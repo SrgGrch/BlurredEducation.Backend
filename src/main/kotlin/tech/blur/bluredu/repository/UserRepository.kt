@@ -5,4 +5,6 @@ import org.springframework.stereotype.Repository
 import tech.blur.bluredu.entity.UserEntity
 
 @Repository("UserRepository")
-interface UserRepository : JpaRepository<UserEntity, String>
+interface UserRepository : JpaRepository<UserEntity, String> {
+    fun getUserEntityByNickname(nickname: String): UserEntity
+}

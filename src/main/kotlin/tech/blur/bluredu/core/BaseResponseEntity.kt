@@ -9,7 +9,7 @@ import org.springframework.http.ResponseEntity
  * @param status the status code
  * @param message response message
  */
-class BaseResponseEntity<T>(body: T, status: HttpStatus, val message: String = "") : ResponseEntity<T>(body, status) {
+class BaseResponseEntity<T>(body: T?, status: HttpStatus, val message: String = "") : ResponseEntity<T>(body, status) {
 
 
     /**
