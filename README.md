@@ -7,7 +7,7 @@
  
 ## Links:
 - [API](https://bluredu-backend.herokuapp.com/)
-- [~~Documentation~~](https://bluredu-backend.herokuapp.com/swagger-ui.html#/)
+- [Documentation](https://bluredu-backend.herokuapp.com/swagger-ui.html)
 
 ## How to run?
 1. Clone repo
