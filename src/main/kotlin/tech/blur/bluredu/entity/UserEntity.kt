@@ -4,7 +4,7 @@ import java.io.Serializable
 import javax.persistence.*
 
 @Entity
-@Table
+@Table(name = "users")
 data class UserEntity(
         @Id
         val id: Int,
@@ -18,7 +18,7 @@ data class UserEntity(
         @Column(name = "notification_token")
         val notificationToken: String,
 
-        @OneToOne
+        @ManyToOne
         @JoinColumn(name = "company", referencedColumnName = "id")
         val company: CompanyEntity?
 ) : Serializable

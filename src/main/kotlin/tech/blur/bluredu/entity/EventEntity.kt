@@ -1,17 +1,26 @@
 package tech.blur.bluredu.entity
 
 import java.io.Serializable
-import java.sql.Timestamp
+import java.sql.Date
 import javax.persistence.*
 
 @Entity
-@Table
+@Table(name = "events")
 data class EventEntity(
         @Id
-        val id: String,
-        val date: Timestamp,
+        val id: Int,
 
-        @OneToOne
+        val date: Date,
+
+        val name: String,
+
+        val description: String,
+
+        @ManyToOne
+        @JoinColumn(name = "event_type", referencedColumnName = "id")
+        val eventType: EventType,
+
+        @ManyToOne
         @JoinColumn(name = "place", referencedColumnName = "id")
         val place: PlaceEntity,
 
@@ -21,5 +30,9 @@ data class EventEntity(
 
         @ManyToMany(fetch = FetchType.LAZY)
         @JoinTable(name = "events_guests", joinColumns = [JoinColumn(name = "event_id")], inverseJoinColumns = [JoinColumn(name = "guest_id")])
-        val guests: List<UserEntity>
+        val guests: List<UserEntity>,
+
+        @ManyToMany(fetch = FetchType.LAZY)
+        @JoinTable(name = "event_sponsor", joinColumns = [JoinColumn(name = "event_id")], inverseJoinColumns = [JoinColumn(name = "sponsor_id")])
+        val sponsors: List<UserEntity>
 ) : Serializable

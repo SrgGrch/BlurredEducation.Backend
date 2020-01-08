@@ -6,10 +6,10 @@ import javax.persistence.Id
 import javax.persistence.Table
 
 @Entity
-@Table
+@Table(name = "companies")
 data class CompanyEntity(
         @Id
-        val id: String,
+        val id: Int,
         val name: String,
         val description: String
 ) : Serializable
