@@ -1,16 +1,18 @@
 package tech.blur.bluredu.api
 
 import io.swagger.annotations.Api
-import org.springframework.stereotype.Controller
 import org.springframework.web.bind.annotation.RequestMapping
+import org.springframework.web.bind.annotation.ResponseBody
+import org.springframework.web.bind.annotation.RestController
 import tech.blur.bluredu.core.BaseResponseEntity
 import javax.servlet.http.HttpServletRequest
 
 
 @Api(tags = ["Home"])
-@Controller("HomeController")
+@RestController("HomeController")
 class HomeController {
 
+    @ResponseBody
     @RequestMapping("/index")
     fun hello(request: HttpServletRequest): BaseResponseEntity<String> {
         println(request.servletPath)
