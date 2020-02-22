@@ -13,13 +13,13 @@ import java.util.*
 
 @Service("TokenService")
 class TokenService @Autowired constructor(
-        private val userDetailsService: UserDetailsService
+        private val userService: UserService
 ) {
     fun getToken(username: String?, password: String?): TokenObject? {
         if (username == null || password == null)
             return null
         val tokenData = HashMap<String, Any>()
-        val user = userDetailsService.getInternalUserByNicname(username)
+        val user = userService.getInternalUserByNickname(username)
 
         if (password == user.passwordHash) {
             val calendar = Calendar.getInstance()

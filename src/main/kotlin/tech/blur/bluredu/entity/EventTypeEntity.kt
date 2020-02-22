@@ -8,7 +8,7 @@ import javax.persistence.Table
 
 @Entity
 @Table(name = "event_types")
-data class EventType(
+data class EventTypeEntity(
         @Id
         val id: Int,
 

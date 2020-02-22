@@ -17,8 +17,12 @@ data class EventEntity(
         val description: String,
 
         @ManyToOne
+        @JoinColumn(name = "organizer", referencedColumnName = "id")
+        val organizer: CompanyEntity,
+
+        @ManyToOne
         @JoinColumn(name = "event_type", referencedColumnName = "id")
-        val eventType: EventType,
+        val eventType: EventTypeEntity,
 
         @ManyToOne
         @JoinColumn(name = "place", referencedColumnName = "id")
@@ -34,5 +38,5 @@ data class EventEntity(
 
         @ManyToMany(fetch = FetchType.LAZY)
         @JoinTable(name = "event_sponsor", joinColumns = [JoinColumn(name = "event_id")], inverseJoinColumns = [JoinColumn(name = "sponsor_id")])
-        val sponsors: List<UserEntity>
+        val sponsors: List<CompanyEntity>
 ) : Serializable

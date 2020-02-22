@@ -20,7 +20,6 @@ class HomeController {
             in 1..80 -> BaseResponseEntity("Status: OK")
             in 81..90 -> BaseResponseEntity("Status: NULL")
             else -> BaseResponseEntity("Status: False")
-
         }
     }
 
