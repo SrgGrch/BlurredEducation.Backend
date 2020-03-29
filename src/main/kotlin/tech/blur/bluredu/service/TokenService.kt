@@ -11,6 +11,7 @@ import tech.blur.bluredu.domain.TokenObject
 import java.util.*
 
 
+@Deprecated("Use spring security")
 @Service("TokenService")
 class TokenService @Autowired constructor(
         private val userService: UserService

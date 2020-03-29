@@ -31,6 +31,6 @@ class AccountController @Autowired constructor(
     }
 
     companion object {
-        private const val ACCOUNT_ROOT = "Account"
+        const val ACCOUNT_ROOT = "Account"
     }
 }

@@ -6,8 +6,8 @@ import tech.blur.bluredu.api.models.AuthResponse
 
 @Service("Account")
 class AccountService @Autowired constructor(
-        val tokenService: TokenService,
-        val userService: UserService
+        private val tokenService: TokenService,
+        private val userService: UserService
 ) {
     fun getToken(nickname: String?, password: String?): AuthResponse? {
         val token = tokenService.getToken(nickname, password)

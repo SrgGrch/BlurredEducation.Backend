@@ -9,6 +9,7 @@ import tech.blur.bluredu.domain.User
 import tech.blur.bluredu.entity.toInternalUser
 import tech.blur.bluredu.entity.toUser
 import tech.blur.bluredu.repository.UserRepository
+import tech.blur.bluredu.service.authorities.UserAuthority
 import org.springframework.security.core.userdetails.User as SpringUser
 
 @Service("UserDetailsService")
@@ -24,6 +25,6 @@ class UserService @Autowired constructor(
             userRepository.findUserEntityByNickname(it).toInternalUser()
         } ?: throw IllegalStateException("Username must not be null")
 
-        return SpringUser(internalUser.nickname, internalUser.passwordHash, null)
+        return SpringUser(internalUser.nickname, internalUser.passwordHash, listOf(UserAuthority()))
     }
 }

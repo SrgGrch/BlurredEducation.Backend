@@ -14,4 +14,12 @@ open class User(
             user.email,
             user.company
     )
+
+    constructor(user: InternalUser) : this(
+            user.id,
+            user.name,
+            user.nickname,
+            user.email,
+            user.company
+    )
 }
