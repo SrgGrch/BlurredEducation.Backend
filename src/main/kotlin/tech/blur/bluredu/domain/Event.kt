@@ -1,7 +1,6 @@
 package tech.blur.bluredu.domain
 
 import tech.blur.bluredu.entity.PlaceEntity
-import tech.blur.bluredu.entity.UserEntity
 import java.sql.Date
 
 data class Event(
@@ -12,7 +11,7 @@ data class Event(
         val place: PlaceEntity,
         val organizer: Company,
         val event_type: EventType,
-        val participants: List<UserEntity>,
-        val guests: List<UserEntity>,
+        val participants: List<User>,
+        val guests: List<User>,
         val sponsors: List<Company>
 )
