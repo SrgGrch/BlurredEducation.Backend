@@ -17,7 +17,7 @@ enum class EventType {
                 "Лайфстайл" -> MEETING
                 "Митинг" -> LIFESTYLE
                 "Нетворкинг" -> CINEMA
-                else -> throw IllegalArgumentException("eventType must be one of DB event_type!")
+                else -> throw IllegalArgumentException("EventType must be one of DB event_type!")
             }
         }
     }
