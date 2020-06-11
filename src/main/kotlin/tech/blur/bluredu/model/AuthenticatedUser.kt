@@ -1,4 +1,4 @@
-package tech.blur.bluredu.domain
+package tech.blur.bluredu.model
 
 import org.springframework.security.core.GrantedAuthority
 import org.springframework.security.core.authority.AuthorityUtils

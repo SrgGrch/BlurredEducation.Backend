@@ -1,4 +1,4 @@
-package tech.blur.bluredu.domain
+package tech.blur.bluredu.model
 
 open class InternalUser(
         id: Int,

@@ -5,4 +5,4 @@ import org.springframework.stereotype.Repository
 import tech.blur.bluredu.entity.EventEntity
 
 @Repository("EventRepository")
-interface EventRepository : JpaRepository<EventEntity, String>
+interface EventRepository : JpaRepository<EventEntity, Int>

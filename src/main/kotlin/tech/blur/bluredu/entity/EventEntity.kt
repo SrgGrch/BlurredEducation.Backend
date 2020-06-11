@@ -1,5 +1,7 @@
 package tech.blur.bluredu.entity
 
+import tech.blur.bluredu.model.Event
+import tech.blur.bluredu.model.EventType
 import java.io.Serializable
 import java.sql.Date
 import javax.persistence.*
@@ -40,3 +42,16 @@ data class EventEntity(
         @JoinTable(name = "event_sponsor", joinColumns = [JoinColumn(name = "event_id")], inverseJoinColumns = [JoinColumn(name = "sponsor_id")])
         val sponsors: List<CompanyEntity>
 ) : Serializable
+
+fun EventEntity.toEvent() = Event(
+        id = id,
+        date = date,
+        name = name,
+        description = description,
+        organizer = organizer.toCompany(),
+        event_type = EventType.resolveEventTypeByName(eventType.typeName),
+        guests = guests.map(UserEntity::toUser),
+        participants = participants.map(UserEntity::toUser),
+        place = place,
+        sponsors = sponsors.map(CompanyEntity::toCompany)
+)

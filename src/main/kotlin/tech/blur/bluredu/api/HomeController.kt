@@ -1,6 +1,7 @@
 package tech.blur.bluredu.api
 
 import io.swagger.annotations.Api
+import org.springframework.web.bind.annotation.CrossOrigin
 import org.springframework.web.bind.annotation.RequestMapping
 import org.springframework.web.bind.annotation.ResponseBody
 import org.springframework.web.bind.annotation.RestController
@@ -10,6 +11,7 @@ import javax.servlet.http.HttpServletRequest
 
 @Api(tags = ["Home"])
 @RestController("HomeController")
+@CrossOrigin(origins = ["*"], allowedHeaders = ["*"])
 class HomeController {
 
     @ResponseBody

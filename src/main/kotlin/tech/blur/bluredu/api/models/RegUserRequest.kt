@@ -1,6 +1,6 @@
 package tech.blur.bluredu.api.models
 
-import tech.blur.bluredu.domain.Company
+import tech.blur.bluredu.model.Company
 
 data class RegUserRequest(
         val id: Int,

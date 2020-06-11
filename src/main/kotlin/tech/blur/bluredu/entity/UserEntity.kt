@@ -11,7 +11,7 @@ data class UserEntity(
         val name: String,
         val nickname: String,
         val email: String,
-
+        val token: String,
         @Column(name = "password_hash")
         val passwordHash: String,
 

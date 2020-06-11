@@ -6,8 +6,11 @@ import io.jsonwebtoken.io.Decoders
 import io.jsonwebtoken.security.Keys
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.stereotype.Service
-import tech.blur.bluredu.core.exceptions.AuthenticationError
-import tech.blur.bluredu.domain.TokenObject
+import tech.blur.bluredu.common.Result
+import tech.blur.bluredu.errors.BlurError
+import tech.blur.bluredu.errors.NoSuchUserError
+import tech.blur.bluredu.errors.WrongCredentialsError
+import tech.blur.bluredu.model.TokenObject
 import java.util.*
 
 
@@ -16,13 +19,16 @@ import java.util.*
 class TokenService @Autowired constructor(
         private val userService: UserService
 ) {
-    fun getToken(username: String?, password: String?): TokenObject? {
-        if (username == null || password == null)
-            return null
+    fun getToken(username: String, password: String): Result<TokenObject, BlurError> {
         val tokenData = HashMap<String, Any>()
-        val user = userService.getInternalUserByNickname(username)
 
-        if (password == user.passwordHash) {
+        val user = try {
+            userService.getInternalUserByNickname(username)
+        } catch (e: NoSuchUserError) {
+            return Result.failure(NoSuchUserError())
+        }
+
+        return if (password == user.passwordHash) {
             val calendar = Calendar.getInstance()
             calendar.add(Calendar.YEAR, 100)
 
@@ -40,8 +46,17 @@ class TokenService @Autowired constructor(
 
             val keyBytes = Decoders.BASE64.decode("RDY1QWRTSjc0NTFLNms2ajU2NGE2RDQ5Szg0Sjk4NG42NWE0NnNkOGlqbkFTTmtkam5hanNkbTg1c2FkNTZzYWQ0YXM2ZDRhM3M1ZDQ5NGY0cjQ1NmFzNGQ=")
             val key = Keys.hmacShaKeyFor(keyBytes)
+            val token = TokenObject(jwtBuilder.signWith(key, SignatureAlgorithm.HS512).compact(), calendar.timeInMillis)
 
-            return TokenObject(jwtBuilder.signWith(key, SignatureAlgorithm.HS512).compact(), calendar.timeInMillis)
-        } else throw AuthenticationError()
+            userService.saveTokenToDatabase(user.id, token.token)
+
+            Result.success(token)
+        } else {
+            Result.failure(WrongCredentialsError())
+        }
+    }
+
+    fun validateToken(token: String) {
+
     }
 }

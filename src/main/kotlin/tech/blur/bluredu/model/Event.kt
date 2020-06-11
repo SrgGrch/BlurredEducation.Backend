@@ -1,4 +1,4 @@
-package tech.blur.bluredu.domain
+package tech.blur.bluredu.model
 
 import tech.blur.bluredu.entity.PlaceEntity
 import java.sql.Date

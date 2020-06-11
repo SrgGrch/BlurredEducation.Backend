@@ -1,7 +1,7 @@
 package tech.blur.bluredu.api.models
 
-import tech.blur.bluredu.domain.TokenObject
-import tech.blur.bluredu.domain.User
+import tech.blur.bluredu.model.TokenObject
+import tech.blur.bluredu.model.User
 
 data class AuthResponse(
         val token: TokenObject,

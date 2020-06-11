@@ -19,7 +19,6 @@ import org.springframework.security.oauth2.provider.token.store.JwtTokenStore
 import tech.blur.bluredu.api.AccountController
 import tech.blur.bluredu.api.EventsController
 import tech.blur.bluredu.service.UserService
-import tech.blur.bluredu.service.authorities.UserAuthority
 
 @Configuration
 @EnableWebSecurity
@@ -59,9 +58,9 @@ constructor(private val userService: UserService) : WebSecurityConfigurerAdapter
                         "/swagger-ui.html",
                         "/${EventsController.EVENTS_ROOT}/GetAll"
                 ).permitAll()
-                .antMatchers("/${EventsController.EVENTS_ROOT}/**").hasRole(UserAuthority.roleName)
-                .antMatchers("/Events/**").hasRole(UserAuthority.roleName)
-//                .anyRequest().authenticated()
+//                .antMatchers("/${EventsController.EVENTS_ROOT}/**").hasRole(UserAuthority.roleName)
+//                .antMatchers("/Events/**").hasRole(UserAuthority.roleName)
+                .anyRequest().permitAll()
                 .and()
                 .sessionManagement()
                 .sessionCreationPolicy(SessionCreationPolicy.STATELESS)

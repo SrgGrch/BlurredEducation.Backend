@@ -1,8 +1,8 @@
 package tech.blur.bluredu.entity
 
-import tech.blur.bluredu.domain.Company
-import tech.blur.bluredu.domain.InternalUser
-import tech.blur.bluredu.domain.User
+import tech.blur.bluredu.model.Company
+import tech.blur.bluredu.model.InternalUser
+import tech.blur.bluredu.model.User
 
 fun UserEntity.toUser() = User(
         id,
