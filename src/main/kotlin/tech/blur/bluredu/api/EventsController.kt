@@ -4,7 +4,10 @@ import io.swagger.annotations.Api
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.http.HttpStatus
 import org.springframework.web.bind.annotation.*
+import tech.blur.bluredu.common.Result
 import tech.blur.bluredu.core.BaseResponseEntity
+import tech.blur.bluredu.errors.NoSuchUserError
+import tech.blur.bluredu.errors.UserAlreadyInEvent
 import tech.blur.bluredu.model.Event
 import tech.blur.bluredu.service.AccountService
 import tech.blur.bluredu.service.EventService
@@ -38,8 +41,35 @@ class EventsController @Autowired constructor(
     fun createEvent(
             @RequestHeader("Authentication") token: String
     ): BaseResponseEntity<String> {
-        if (accountService.isTokenValid(token)) return BaseResponseEntity(null, HttpStatus.UNAUTHORIZED)
+        if (!accountService.isTokenValid(token)) return BaseResponseEntity(null, HttpStatus.UNAUTHORIZED)
         return BaseResponseEntity("Привет")
+    }
+
+    @ResponseBody
+    @GetMapping("$EVENTS_ROOT/{id}/Reg")
+    fun registerOnEvent(
+            @RequestHeader("Authentication") token: String,
+            @PathVariable id: String
+    ): BaseResponseEntity<Unit> {
+        if (!accountService.isTokenValid(token)) {
+            return BaseResponseEntity(null, HttpStatus.UNAUTHORIZED)
+        }
+
+        return when (val res = eventService.registerOnEvent(token, id.toInt())) {
+            is Result.Success -> {
+                BaseResponseEntity(Unit, HttpStatus.NO_CONTENT)
+            }
+            is Result.Failure -> {
+                when (res.error) {
+                    is NoSuchElementException -> BaseResponseEntity<Unit>(null, HttpStatus.NOT_FOUND)
+                    is NoSuchUserError -> BaseResponseEntity<Unit>(null, HttpStatus.UNAUTHORIZED)
+                    is UserAlreadyInEvent -> BaseResponseEntity<Unit>(null, HttpStatus.GONE)
+                    else -> BaseResponseEntity<Unit>(null, HttpStatus.I_AM_A_TEAPOT)
+                }
+
+            }
+        }
+
     }
 
     companion object {

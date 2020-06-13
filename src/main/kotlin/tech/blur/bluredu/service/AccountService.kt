@@ -5,6 +5,7 @@ import org.springframework.stereotype.Service
 import tech.blur.bluredu.api.models.AuthResponse
 import tech.blur.bluredu.common.Result
 import tech.blur.bluredu.common.mapSuccess
+import tech.blur.bluredu.entity.UserEntity
 import tech.blur.bluredu.errors.BlurError
 import tech.blur.bluredu.errors.NoSuchUserError
 import tech.blur.bluredu.model.InternalUser
@@ -23,10 +24,18 @@ class AccountService @Autowired constructor(
         }
     }
 
+    fun getUserEntityByToken(token: String): Result<UserEntity, NoSuchUserError> {
+        return userService.getUserEntityByToken(token)?.let {
+            Result.success<UserEntity, NoSuchUserError>(it)
+        } ?: Result.failure(NoSuchUserError())
+    }
+
     fun getUserByToken(token: String): Result<User, NoSuchUserError> {
-        return userService.getUserByToken(token)?.let {
+        val res = userService.getUserByToken(token)?.let {
             Result.success<User, NoSuchUserError>(it)
         } ?: Result.failure(NoSuchUserError())
+
+        return res
     }
 
     fun getInternalUserByToken(token: String): Result<InternalUser, NoSuchUserError> {
@@ -35,5 +44,5 @@ class AccountService @Autowired constructor(
         } ?: Result.failure(NoSuchUserError())
     }
 
-    fun isTokenValid(token: String): Boolean = getUserByToken(token) is Result.Success
+    fun isTokenValid(token: String): Boolean = getUserByToken(token).isSuccess
 }

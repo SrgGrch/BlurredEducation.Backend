@@ -21,6 +21,7 @@ class UserService @Autowired constructor(
     fun getInternalUserByNickname(nickname: String): InternalUser = userRepository.findUserEntityByNickname(nickname).toInternalUser()
 
     fun getUserByToken(token: String) = userRepository.getUserEntityByToken(token)?.toUser()
+    fun getUserEntityByToken(token: String) = userRepository.getUserEntityByToken(token)
     fun getInternalUserByToken(token: String) = userRepository.getUserEntityByToken(token)?.toInternalUser()
 
     override fun loadUserByUsername(username: String?): UserDetails {

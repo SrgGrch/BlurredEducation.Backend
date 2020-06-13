@@ -56,7 +56,7 @@ constructor(private val userService: UserService) : WebSecurityConfigurerAdapter
                 .antMatchers(
                         "/${AccountController.ACCOUNT_ROOT}/**",
                         "/swagger-ui.html",
-                        "/${EventsController.EVENTS_ROOT}/GetAll"
+                        "/${EventsController.EVENTS_ROOT}/**"
                 ).permitAll()
 //                .antMatchers("/${EventsController.EVENTS_ROOT}/**").hasRole(UserAuthority.roleName)
 //                .antMatchers("/Events/**").hasRole(UserAuthority.roleName)
