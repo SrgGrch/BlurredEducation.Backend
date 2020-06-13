@@ -1,4 +1,4 @@
-package tech.blur.bluredu.entity
+package tech.blur.bluredu.repository.entity
 
 import tech.blur.bluredu.model.Company
 import tech.blur.bluredu.model.InternalUser

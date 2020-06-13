@@ -1,4 +1,4 @@
-package tech.blur.bluredu.entity
+package tech.blur.bluredu.repository.entity
 
 import java.io.Serializable
 import javax.persistence.*
@@ -11,7 +11,7 @@ data class UserEntity(
         val name: String,
         val nickname: String,
         val email: String,
-        val token: String,
+        val token: String?,
         @Column(name = "password_hash")
         val passwordHash: String,
 

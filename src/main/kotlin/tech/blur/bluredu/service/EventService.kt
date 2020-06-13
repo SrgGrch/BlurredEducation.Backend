@@ -3,12 +3,12 @@ package tech.blur.bluredu.service
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.stereotype.Service
 import tech.blur.bluredu.common.Result
-import tech.blur.bluredu.entity.EventEntity
-import tech.blur.bluredu.entity.toEvent
 import tech.blur.bluredu.errors.NoSuchUserError
 import tech.blur.bluredu.errors.UserAlreadyInEvent
 import tech.blur.bluredu.model.Event
 import tech.blur.bluredu.repository.EventRepository
+import tech.blur.bluredu.repository.entity.EventEntity
+import tech.blur.bluredu.repository.entity.toEvent
 import java.util.*
 
 @Service("EventService")

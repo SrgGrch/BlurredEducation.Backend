@@ -4,12 +4,14 @@ import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.security.core.userdetails.UserDetails
 import org.springframework.security.core.userdetails.UserDetailsService
 import org.springframework.stereotype.Service
-import tech.blur.bluredu.entity.toInternalUser
-import tech.blur.bluredu.entity.toUser
+import tech.blur.bluredu.api.models.RegisterRequest
 import tech.blur.bluredu.errors.NoSuchUserError
 import tech.blur.bluredu.model.InternalUser
 import tech.blur.bluredu.model.User
 import tech.blur.bluredu.repository.UserRepository
+import tech.blur.bluredu.repository.entity.UserEntity
+import tech.blur.bluredu.repository.entity.toInternalUser
+import tech.blur.bluredu.repository.entity.toUser
 import tech.blur.bluredu.service.authorities.UserAuthority
 import org.springframework.security.core.userdetails.User as SpringUser
 
@@ -34,5 +36,26 @@ class UserService @Autowired constructor(
 
     fun saveTokenToDatabase(id: Int, token: String) {
         userRepository.updateTokenById(id, token)
+    }
+
+    fun isNicknameTaken(nickname: String): Boolean {
+        return userRepository.getUserEntitiesByNickname(nickname).isNotEmpty()
+    }
+
+    fun registerUser(registerRequest: RegisterRequest): UserEntity {
+        val userId = userRepository.count().toInt() + 1
+
+        return userRepository.save(
+                UserEntity(
+                        userId,
+                        registerRequest.name,
+                        registerRequest.nickname,
+                        registerRequest.email,
+                        null,
+                        registerRequest.password,
+                        null,
+                        null
+                )
+        )
     }
 }

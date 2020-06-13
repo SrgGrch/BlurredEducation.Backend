@@ -1,4 +1,4 @@
-package tech.blur.bluredu.entity
+package tech.blur.bluredu.repository.entity
 
 import java.io.Serializable
 import javax.persistence.Column

@@ -4,7 +4,7 @@ import org.springframework.data.jpa.repository.JpaRepository
 import org.springframework.data.jpa.repository.Modifying
 import org.springframework.data.jpa.repository.Query
 import org.springframework.stereotype.Repository
-import tech.blur.bluredu.entity.UserEntity
+import tech.blur.bluredu.repository.entity.UserEntity
 import javax.transaction.Transactional
 
 @Repository("UserRepository")
@@ -17,4 +17,6 @@ interface UserRepository : JpaRepository<UserEntity, Int> {
     fun updateTokenById(id: Int, token: String)
 
     fun getUserEntityByToken(token: String): UserEntity?
+
+    fun getUserEntitiesByNickname(nickname: String): List<UserEntity>
 }

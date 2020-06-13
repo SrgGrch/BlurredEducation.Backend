@@ -1,6 +1,6 @@
 package tech.blur.bluredu.model
 
-import tech.blur.bluredu.entity.PlaceEntity
+import tech.blur.bluredu.repository.entity.PlaceEntity
 import java.sql.Date
 
 data class Event(
