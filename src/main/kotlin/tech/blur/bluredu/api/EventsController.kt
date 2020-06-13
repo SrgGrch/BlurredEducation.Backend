@@ -69,7 +69,18 @@ class EventsController @Autowired constructor(
 
             }
         }
+    }
 
+    @ResponseBody
+    @GetMapping("$EVENTS_ROOT/{id}/IsReg")
+    fun isRegisteredOnEvent(
+            @RequestHeader("Authentication") token: String,
+            @PathVariable id: String
+    ): BaseResponseEntity<Boolean> {
+        if (!accountService.isTokenValid(token))
+            return BaseResponseEntity(false)
+
+        return BaseResponseEntity(eventService.isRegisteredOnEvent(token, id.toInt()))
     }
 
     companion object {

@@ -22,6 +22,12 @@ class EventService @Autowired constructor(
 
     fun getEvent(id: Int): Event? = eventRepository.findById(id).orElseGet { null }.toEvent()
 
+    fun isRegisteredOnEvent(token: String, id: Int): Boolean {
+        val event = eventRepository.findById(id)
+        val user = accountService.getUserEntityByToken(token)
+        return event.get().guests.contains((user as Result.Success).value) || event.get().participants.contains(user.value)
+    }
+
     fun registerOnEvent(token: String, id: Int): Result<Unit, Exception> {
         val eventOptional = eventRepository.findById(id)
         val user = accountService.getUserEntityByToken(token)
