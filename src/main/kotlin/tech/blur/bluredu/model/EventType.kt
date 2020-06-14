@@ -1,22 +1,22 @@
 package tech.blur.bluredu.model
 
 enum class EventType {
-    WORKSHOP,
-    LECTURE,
-    NETWORKING,
-    MEETING,
-    LIFESTYLE,
-    CINEMA;
+    Workshop,
+    Lecture,
+    Networking,
+    Meeting,
+    Lifestyle,
+    Cinema;
 
     companion object {
         fun resolveEventTypeByName(eventType: String): EventType {
             return when (eventType) {
-                "Воркшоп" -> WORKSHOP
-                "Доклад" -> LECTURE
-                "Кино" -> NETWORKING
-                "Лайфстайл" -> MEETING
-                "Митинг" -> LIFESTYLE
-                "Нетворкинг" -> CINEMA
+                "Воркшоп" -> Workshop
+                "Доклад" -> Lecture
+                "Кино" -> Cinema
+                "Лайфстайл" -> Lifestyle
+                "Митинг" -> Meeting
+                "Нетворкинг" -> Networking
                 else -> throw IllegalArgumentException("EventType must be one of DB event_type!")
             }
         }

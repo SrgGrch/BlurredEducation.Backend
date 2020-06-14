@@ -55,8 +55,4 @@ class TokenService @Autowired constructor(
             Result.failure(WrongCredentialsError())
         }
     }
-
-    fun validateToken(token: String) {
-
-    }
 }

@@ -10,7 +10,7 @@ data class Event(
         val date: Date,
         val place: PlaceEntity,
         val organizer: Company,
-        val event_type: EventType,
+        val eventType: EventType,
         val participants: List<User>,
         val guests: List<User>,
         val sponsors: List<Company>

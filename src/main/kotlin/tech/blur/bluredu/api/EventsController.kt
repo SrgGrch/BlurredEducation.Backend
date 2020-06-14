@@ -35,6 +35,22 @@ class EventsController @Autowired constructor(
         } ?: BaseResponseEntity<Event>(null, HttpStatus.NOT_FOUND)
     }
 
+    @PutMapping("$EVENTS_ROOT/{id}")
+    fun updateEvent(
+            @RequestBody event: Event,
+            @PathVariable id: String
+    ) {
+        eventService.updateEventPlace(id.toInt(), event)
+    }
+
+    @GetMapping("$EVENTS_ROOT/{id}/UpdatePlace")
+    fun updateEventPlace(
+            @RequestParam placeId: String,
+            @PathVariable id: String
+    ) {
+        eventService.updateEventPlace(id.toInt(), placeId.toInt())
+    }
+
 
     @ResponseBody
     @GetMapping("${EVENTS_ROOT}/Create")
@@ -42,7 +58,7 @@ class EventsController @Autowired constructor(
             @RequestHeader("Authentication") token: String
     ): BaseResponseEntity<String> {
         if (!accountService.isTokenValid(token)) return BaseResponseEntity(null, HttpStatus.UNAUTHORIZED)
-        return BaseResponseEntity("Привет")
+        throw NotImplementedError()
     }
 
     @ResponseBody

@@ -7,6 +7,7 @@ import tech.blur.bluredu.errors.NoSuchUserError
 import tech.blur.bluredu.errors.UserAlreadyInEvent
 import tech.blur.bluredu.model.Event
 import tech.blur.bluredu.repository.EventRepository
+import tech.blur.bluredu.repository.PlaceRepository
 import tech.blur.bluredu.repository.entity.EventEntity
 import tech.blur.bluredu.repository.entity.toEvent
 import java.util.*
@@ -14,7 +15,8 @@ import java.util.*
 @Service("EventService")
 class EventService @Autowired constructor(
         private val eventRepository: EventRepository,
-        val accountService: AccountService
+        val accountService: AccountService,
+        private val placeRepository: PlaceRepository
 ) {
     val getAllEvents: (() -> List<Event>) = {
         eventRepository.findAll().map(EventEntity::toEvent)
@@ -61,5 +63,14 @@ class EventService @Autowired constructor(
                 Result.failure<Unit, Exception>(NoSuchUserError())
             }
         }
+    }
+
+    fun updateEventPlace(id: Int, event: Event) {
+        eventRepository.updateEvent(id, event.name, event.description)
+    }
+
+    fun updateEventPlace(id: Int, placeId: Int) {
+        val place = placeRepository.findById(placeId)
+        eventRepository.updateEvent(id, place.get())
     }
 }
