@@ -21,5 +21,3 @@
 ## Authors
 * **Sergey Grechishnikov** - *Main contributor* - [SrgGrch](https://github.com/SrgGrch)  
 [![Twitter Follow](https://img.shields.io/twitter/follow/SrgGrch.svg?style=social&label=Follow)](https://twitter.com/srggrch)
-
-See also the list of [contributors](https://github.com/blurtech/event-sharing-backend/contributors) who participated in this project.
